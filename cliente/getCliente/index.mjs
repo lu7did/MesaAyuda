@@ -8,7 +8,7 @@
         //* (c) 2023 Dr. Pedro E. Colla
         //*-----------------------------------------------------------------------------*
         
-  import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
+    import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
 	import { randomUUID } from "crypto";
 	import {marshall,unmarshall}  from "@aws-sdk/util-dynamodb";
 
@@ -30,7 +30,7 @@
           const response = await ddbClient.send(command);
           const uresponse = unmarshall(response.Item);
           return {
-                 statusCode: 500,
+                 statusCode: 200,
      	            body: JSON.stringify({ "data" : uresponse , "response" : "OK" }),
           };
           
@@ -46,4 +46,3 @@
             }
 
 };
-

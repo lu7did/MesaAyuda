@@ -68,7 +68,7 @@
     	            contacto              : cliente.contacto,
 	            	nombre                : cliente.nombre,
 	            	password              : "secret",
-	            	activo                : false,
+	            	activo                : true,
 	            	registrado            : false,
 	            	baja                  : false,
 	            	fecha_alta            : hoy,
@@ -92,9 +92,6 @@
 	            statusCode: 200,
             	body: JSON.stringify({"cliente" : newCliente , "response" : "OK"}),
 	        };
-
-
-
 
 //*----- Si algo anda mal retorna el error
                                                      
