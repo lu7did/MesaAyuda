@@ -22,8 +22,7 @@
         const input = { 
             ExpressionAttributeNames: { 
                  "#a": "activo", 
-                 "#r": "registrado",
-                 '#b': "baja"
+                 "#r": "registrado"
             }, 
             ExpressionAttributeValues: { 
                 ":a": { 
@@ -31,10 +30,7 @@
                 }, 
                ":r": { 
                    BOOL: cliente.registrado 
-                }, 
-                ":b": {
-                   BOOL: cliente.baja
-                }
+                },
            }, 
            Key: { 
                "id": { 
@@ -42,7 +38,7 @@
            }}, 
            ReturnValues: "ALL_NEW", 
            TableName: "cliente", 
-           UpdateExpression: "SET #a = :a, #r = :r,#b = :b " 
+           UpdateExpression: "SET #a = :a, #r = :r" 
 };
 
 
@@ -73,6 +69,5 @@
             }
 
 };
-
 
 
