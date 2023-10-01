@@ -40,11 +40,18 @@
 	        
 	        if (uresponse.activo != true) {
 	           return {
-                  statusCode: 400,
+                  statusCode: 401,
      	            body: JSON.stringify({ "response" : "invalid" }),
              };
-	        }
-	        
+	        } 
+            if (uresponse.primer_ingreso == true) {
+	           return {
+                  statusCode: 402,
+     	            body: JSON.stringify({ "response" : "cambio password" }),
+             };
+                
+            } 
+
 //*----- si la validación ha sido buena debe actualizar la fecha de último ingreso
 
 	//*--- Obtiene fecha corriente y puebla campos relacionados

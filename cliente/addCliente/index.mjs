@@ -70,6 +70,7 @@
 	            	password              : "secret",
 	            	activo                : true,
 	            	registrado            : false,
+	            	primer_ingreso        : true,
 	            	fecha_alta            : hoy,
 	            	fecha_cambio_password : hoy,
 	            	fecha_ultimo_ingreso  : hoy,

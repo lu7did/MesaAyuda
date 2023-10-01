@@ -19,7 +19,7 @@
 
 	//*--- Obtiene fecha corriente y puebla campos relacionados
     	    
-  	var hoy = new Date();
+  	    var hoy = new Date();
         var dd = String(hoy.getDate()).padStart(2, '0');
         var mm = String(hoy.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = hoy.getFullYear();
@@ -31,12 +31,17 @@
         const input = { 
             ExpressionAttributeNames: { 
                  "#p": "password", 
+                 "#s": "primer_ingreso",
                  "#f": "fecha_cambio_password"
             }, 
             ExpressionAttributeValues: { 
                 ":p": { 
                    S: cliente.password 
+                },
+                ":s": { 
+                   BOOL: false 
                 }, 
+
                ":f": { 
                    S: hoy 
                 } 
@@ -47,7 +52,7 @@
            }}, 
            ReturnValues: "ALL_NEW", 
            TableName: "cliente", 
-           UpdateExpression: "SET #p = :p, #f = :f" 
+           UpdateExpression: "SET #p = :p, #f = :f, #s = :s" 
 };
 
 
@@ -78,4 +83,7 @@
             }
 
 };
+
+
+
 
