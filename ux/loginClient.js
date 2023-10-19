@@ -44,12 +44,23 @@
         /*---
         Forma URL para acceder, typicode es un fake API REST para pruebas
         */
+        const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
+        const testLoginURL='https://my-json-server.typicode.com/lu7did/testJASON/posts/';
+        const api_LoginURL=testLoginURL+data.id;
 
-        const testLoginURL='http://my-json-server.typicode.com/lu7did/testJASON/posts/';
-        const api_LoginURL=testLoginURL+data.username;
+        /*---
+          Dirección de REST API en AWS
+        */
+        //const RESTapi_LoginURL="https://ss6iifck5m.execute-api.us-east-1.amazonaws.com/loginClienteGET";
+        //const api_LoginURL=RESTapi_LoginURL+"?id="+data.id+"&password="+data.password;
 
         /*---
         Genera objeto HTML a ser actualizado en el tag identificado como "app"
+        */
+
+        /*
+        id de cliente para test 
+        0533a95d-7eef-4c6b-b753-1a41c9d1fbd0
         */
 
         const HTMLResponse=document.querySelector("#app");
@@ -57,35 +68,29 @@
 
         const tpl=document.createDocumentFragment();
         console.log("accediendo URL "+api_LoginURL);       
+        console.log("data es "+JSON.stringify(data));
 
         /*-----
         Realiza el acceso al API Rest utilizando gestión de sincronización mediante promesas
         */
-
+        
         fetch(`${api_LoginURL}`)
-        .then((response)=>response.json())
-        .then((users)=>{
-
-            /*---
-            Verifica si la password indicada por el usuario y la del REST API coinciden (AVISO DE SEGURIDAD)
-            */
-
+        .then(res => {
+            return res.json();
+        }).then(users=>{
+            console.log(users);
+//          if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
             if (users.password == data.password) {
-                /*---
-                Si la password coincide redirecciona a la página getClient.html para procesar tickets
-                */
                 console.log('La password es correcta');
+                console.log("nombre("+users.nombre+") fecha_ultimo_ingreso("+users.fecha_ultimo_ingreso+")");
                 document.getElementById('resultado').style.color="BLACK";
                 document.getElementById('resultado').textContent='Bienvenido al sistema '+users.nombre+', ultimo ingreso '+users.fecha_ultimo_ingreso;
-                window.location.href = "http://127.0.0.1:5500/getClient.html?id="+users.id+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso;
+                window.location.href = listarTicketURL+"?id="+users.id+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso;
             }  else {
-                /*---
-                Si no coinciden da mensaje de alerta y continua
-                */
                 console.log('La password no es correcta');
                 document.getElementById('resultado').style.color="RED";
                 document.getElementById('resultado').textContent='Error de login, intente nuevamente';
             }
-            
-        });
+
+        })
     });

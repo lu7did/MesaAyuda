@@ -32,29 +32,83 @@ Accede a REST API para obtener tickets
 Tener en cuenta que typicode es un fake REST API
 */
 
-const testTicketURL='http://my-json-server.typicode.com/lu7did/testJASON/ticket/';
+const APIREST_URL='http://my-json-server.typicode.com/lu7did/testJASON/ticket/';
+//const APIREST_URL='https://xe3qolsgh0.execute-api.us-east-1.amazonaws.com/listarTicketGET?clienteID='+query.id;
 
-const api_TicketURL=testTicketURL;
+
+//clientID 0533a95d-7eef-4c6b-b753-1a41c9d1fbd0
+
+const api_TicketURL=APIREST_URL;
 const HTMLResponse=document.querySelector("#app");
+
+fetch(`${api_TicketURL}`)
+.then(res => {
+    return res.json();
+}).then(ticket=>{
+    console.log(ticket);
+    let f=false;
+    let table=document.createElement("table");
+    table.style.border="1px solid";
+    table.style.backgroundColor="#ADD8E6";
+    ticket.forEach((t)=> {
+        if (t.clienteID == query.id) {
+            if (f==false) {
+
+                f=true;
+                const hdr=["Cliente","ID","Motivo","Estado","Fecha"];
+                let tr=document.createElement("tr");
+                tr.style.border="1px solid";
+                hdr.forEach((item) => {
+                    let th=document.createElement("th");
+                    th.style.border="1px solid";
+
+                    th.innerText = item;
+                    tr.appendChild(th);
+                });
+                table.appendChild(tr);                   
+            }
+
+            const body=[t.clienteID,`${t.id}`,`${t.solucion}`,`${t.estado_solucion}`,`${t.ultimo_contacto}`];
+            let trl=document.createElement("tr");
+            body.forEach((line) => {
+                let td=document.createElement("td");
+                td.style.border="1px solid";
+                td.innerText = line;
+                trl.appendChild(td);
+            });
+            table.appendChild(trl);                   
+
+        }
+    });
+
+    if (f) {
+        HTMLResponse.appendChild(table);
+    } else {
+
+        console.log("no tiene tickets");
+        document.getElementById('mensajes').style.textAlign = "center";
+        document.getElementById('mensajes').style.color="RED";
+        document.getElementById("mensajes").innerHTML = "No hay tickets pendientes";
+    }
+});
+
+//          if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
+
+
 
 /*---
 Accede al REST API de tickets para obtener información
 */
 
+/*
 fetch(`${api_TicketURL}`)
 .then((response)=>response.json())
 .then((ticket)=>{
     let f=false;
     let table=document.createElement("table");
-    /*---
-    Recibe tickets y los explora
-    */
     ticket.forEach((t)=> {
         if (t.clienteID == query.id) {
             if (f==false) {
-                /*---
-                En el primer ticket a listar pone encabezados
-                */
 
                 f=true;
                 const hdr=["Cliente","ID","Motivo","Estado","Fecha"];
@@ -66,9 +120,6 @@ fetch(`${api_TicketURL}`)
                 });
                 table.appendChild(tr);                   
             }
-            /*---
-            Lista todos los tickets
-            */
 
             const body=[t.clienteID,`${t.id}`,`${t.solucion}`,`${t.estado_solucion}`,`${t.ultimo_contacto}`];
             let trl=document.createElement("tr");
@@ -81,23 +132,18 @@ fetch(`${api_TicketURL}`)
 
         }
     });
-    /*---
-    Si hubo al menos un ticket inserta la tabla recién construida y la página HTML
-    */
 
     if (f) {
         HTMLResponse.appendChild(table);
     } else {
-        /*---
-        Si no hubo al menos un ticket informa en la página HTML
-        */
-       
+
         console.log("no tiene tickets");
         document.getElementById('mensajes').style.textAlign = "center";
         document.getElementById('mensajes').style.color="RED";
         document.getElementById("mensajes").innerHTML = "No hay tickets pendientes";
     }
 });
+*/    
 
 
 
