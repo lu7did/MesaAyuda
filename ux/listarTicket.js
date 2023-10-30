@@ -24,7 +24,7 @@ var query = getQueryParams(document.location.search);
 console.log("id received is("+query.id+")");
 console.log("id received is("+query.nombre+")");
 console.log("id received is("+query.ultimo+")");
-document.getElementById("lastlogin").innerHTML = "Cliente("+query.id+") Contacto("+query.nombre+") ultimo ingreso("+query.ultimo+")";
+document.getElementById("lastlogin").innerHTML = "<table><tr><td>Cliente</td><td>"+query.id+"</td></tr><tr><td>Nombre</td><td>"+query.nombre+"</td></tr><tr><td>Ultimo ingreso</td><td>"+query.ultimo+"</td></tr></table>";
 
 
 /*---

@@ -41,10 +41,11 @@
             return;
         }
 
+        const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
+
         /*---
         Forma URL para acceder, typicode es un fake API REST para pruebas
         */
-        const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
         const testLoginURL='https://my-json-server.typicode.com/lu7did/testJASON/posts/';
         const api_LoginURL=testLoginURL+data.id;
 
