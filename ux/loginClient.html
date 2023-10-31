@@ -26,6 +26,15 @@
               margin: 7px; 
               padding: 2px 
             } 
+            .form-label{
+                margin-bottom:0!important;
+            }     
+            .txt {
+                display: inline-block;
+                  width: 80%;
+                  outline: none;
+                margin:0;
+            }
         </style> 
     </head>
 <body>
@@ -41,16 +50,16 @@
         <center><h4>Ingrese su identificación de usuario y password</h4></center>
         <table>
             <tr style="height:10px;">
-                <td>Cliente</td>
+                <td><label for="cliForm" class="form-label">Cliente</label></td>               
             </tr>
             <tr style="height:10px;">    
-                <td><input name="id" type="text" placeholder="id"><br></td>
+                <td><input class="txt" name="id" type="text" placeholder="id"><br></td>
             </tr>
-            <tr>
-                <td>Password</td>
+            <tr style="height:10px;">
+                <td><label for="passForm" class="form-label">Password</label></td>               
             </tr>
             <tr>    
-                <td><input name="password" type="password" placeholder="password"><br></td>
+                <td><input class="txt" name="password" type="password" placeholder="password"><br></td>
             </tr>
             <tr>
                 <center><td><a href="http://127.0.0.1:5500/loginClient.html">Nuevo cliente</a></td></center>
