@@ -17,18 +17,6 @@ function getQueryParams(qs) {
 }
 
 /*---
-Extrae del URL el id de cliente ya validado, su nombre y la última fecha de login, actualiza banner de seguridad
-*/
-
-var query = getQueryParams(document.location.search);
-console.log("contacto is("+query.contacto+")");
-console.log("id received is("+query.id+")");
-console.log("id received is("+query.nombre+")");
-console.log("id received is("+query.ultimo+")");
-document.getElementById("lastlogin").innerHTML = "<table><tr><td>Contacto</td><td>"+query.contacto+"</td></tr><tr><td>Cliente</td><td>"+query.id+"</td></tr><tr><td>Nombre</td><td>"+query.nombre+"</td></tr><tr><td>Ultimo ingreso</td><td>"+query.ultimo+"</td></tr></table>";
-
-
-/*---
 Accede a REST API para obtener tickets
 Tener en cuenta que typicode es un fake REST API
 */
@@ -36,7 +24,7 @@ Tener en cuenta que typicode es un fake REST API
 //const APIREST_URL='http://my-json-server.typicode.com/lu7did/testJASON/ticket/';
 //const APIREST_URL='https://xe3qolsgh0.execute-api.us-east-1.amazonaws.com/listarTicketGET?clienteID='+query.id;
 const APIREST_URL='http://localhost:8080/api/listarTicket';
-
+const addTicketURL="http://127.0.0.1:5500/addTicket.html";
 
 //clientID 0533a95d-7eef-4c6b-b753-1a41c9d1fbd0
 
@@ -44,8 +32,21 @@ const api_TicketURL=APIREST_URL;
 const HTMLResponse=document.querySelector("#app");
 
 
+/*---
+Extrae del URL el id de cliente ya validado, su nombre y la última fecha de login, actualiza banner de seguridad
+*/
+
+var session = localStorage.getItem("MesaAyuda");
+var clienteID = JSON.parse(session).clienteID;
+var contacto = JSON.parse(session).contacto;
+var nombre = JSON.parse(session).nombre;
+var fecha_ultimo_ingreso = JSON.parse(session).fecha_ultimo_ingreso;
+console.log("localStorage id("+clienteID+") contacto("+contacto+") nombre("+nombre+") ultimo("+fecha_ultimo_ingreso+")");
+
+
+document.getElementById("lastlogin").innerHTML = "<table><tr><td>Contacto</td><td>"+contacto+"</td></tr><tr><td>Cliente</td><td>"+clienteID+"</td></tr><tr><td>Nombre</td><td>"+nombre+"</td></tr><tr><td>Ultimo ingreso</td><td>"+fecha_ultimo_ingreso+"</td></tr></table>";
 const ticket = {
-    "clienteID" : query.id
+    "clienteID" : clienteID,
 };
     
 const options = {
@@ -68,7 +69,7 @@ fetch(`${api_TicketURL}`,options)
     table.style.border="1px solid";
     table.style.backgroundColor="#ADD8E6";
     ticket.data.forEach((t)=> {
-        if (t.clienteID == query.id) {
+        if (t.clienteID == clienteID) {
             if (f==false) {
                 f=true;
                 const hdr=["ID","Motivo","Estado","Fecha"];
@@ -99,10 +100,16 @@ fetch(`${api_TicketURL}`,options)
     if (f) {
         HTMLResponse.appendChild(table);
     } else {
-
         console.log("no tiene tickets");
         document.getElementById('mensajes').style.textAlign = "center";
         document.getElementById('mensajes').style.color="RED";
         document.getElementById("mensajes").innerHTML = "No hay tickets pendientes";
     }
 });
+window.onload = function() {
+    document.getElementById('newticket').onsubmit = function() {
+        console.log("<Click> trato de submitir pero no se lo permiti id="+clienteID+" window.location.href="+addTicketURL);
+        window.location.href = addTicketURL;
+        return false;
+    }    
+}

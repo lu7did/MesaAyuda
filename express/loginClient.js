@@ -104,7 +104,14 @@
                 console.log("nombre("+users.nombre+") fecha_ultimo_ingreso("+users.fecha_ultimo_ingreso+")");
                 document.getElementById('resultado').style.color="BLACK";
                 document.getElementById('resultado').textContent='Bienvenido al sistema '+users.nombre+', ultimo ingreso '+users.fecha_ultimo_ingreso;
-                window.location.href = listarTicketURL+"?id="+users.id+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso+"&contacto="+users.contacto;
+                
+                localStorage.clear();
+                const mysession="MesaAyuda";
+                var session = {'clienteID': users.id,"nombre" : users.nombre,"contacto":users.contacto,"fecha_ultimo_ingreso":users.fecha_ultimo_ingreso};
+                localStorage.setItem(mysession,JSON.stringify(session));
+                
+                //window.location.href = listarTicketURL+"?id="+users.id+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso+"&contacto="+users.contacto+"&session="+mysession;
+                window.location.href = listarTicketURL;
             }  else {
                 console.log('La password no es correcta');
                 document.getElementById('resultado').style.color="RED";

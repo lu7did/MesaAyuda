@@ -19,7 +19,7 @@ var AWS = require("aws-sdk");
 let awsConfig = {
     "region": "us-east-1",
     "endpoint": "http://dynamodb.us-east-1.amazonaws.com",
-    "accessKeyId": "{accessKeyId}", "secretAccessKey": "{secretAccessKey}"
+    "accessKeyId": "AKIA2OFHHZMCZOE6LUL7", "secretAccessKey": "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"
 };
 
 AWS.config.update(awsConfig);
@@ -538,6 +538,7 @@ app.post('/api/addTicket', (req,res) => {
     const {clienteID} = req.body;
     const estado_solucion = 1;
     const {solucion} = req.body;
+    const {descripcion} = req.body;
 
     var hoy = new Date();
     var dd = String(hoy.getDate()).padStart(2, '0');
@@ -550,6 +551,7 @@ app.post('/api/addTicket', (req,res) => {
      clienteID             : clienteID,
      estado_solucion       : estado_solucion,
      solucion              : solucion,
+     descripcion           : descripcion,
      fecha_apertura        : hoy,
      ultimo_contacto       : hoy
     };
@@ -580,6 +582,7 @@ app.post('/api/updateTicket', (req,res) => {
     const {clienteID} = req.body;
     const {estado_solucion} = req.body;
     const {solucion} = req.body;
+    const {descripcion} = req.descripcion;
     const {fecha_apertura} = req.body;
 
     if (!id) {
@@ -641,21 +644,23 @@ app.post('/api/updateTicket', (req,res) => {
                          "#e": "estado_solucion",
                          "#s": "solucion",
                          "#a": "fecha_apertura",
-                         "#u": "ultimo_contacto"
+                         "#u": "ultimo_contacto",
+                         "#d": "descripcion"
                     }, 
                     ExpressionAttributeValues: { 
                         ":c":  clienteID, 
                         ":e":  estado_solucion , 
                         ":s":  solucion , 
                         ":a":  fecha_apertura,
-                        ":u":  ultimo_contacto 
+                        ":u":  ultimo_contacto,
+                        ":d":  descripcion 
                    }, 
                    Key: { 
                        "id": id 
                    }, 
                    ReturnValues: "ALL_NEW", 
                    TableName: "ticket", 
-                   UpdateExpression: "SET #c = :c, #e = :e, #a = :a, #s = :s, #u = :u" 
+                   UpdateExpression: "SET #c = :c, #e = :e, #a = :a, #s = :s, #d = :d, #u = :u" 
                 };
                 docClient.update(paramsUpdate, function (err, data) {
                     if (err)  {
