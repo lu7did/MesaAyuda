@@ -25,6 +25,7 @@ Tener en cuenta que typicode es un fake REST API
 //const APIREST_URL='https://xe3qolsgh0.execute-api.us-east-1.amazonaws.com/listarTicketGET?clienteID='+query.id;
 const APIREST_URL='http://localhost:8080/api/listarTicket';
 const addTicketURL="http://127.0.0.1:5500/addTicket.html";
+const updateTicketURL="http://127.0.0.1:5500/updateTicket.html";
 
 //clientID 0533a95d-7eef-4c6b-b753-1a41c9d1fbd0
 
@@ -83,13 +84,21 @@ fetch(`${api_TicketURL}`,options)
                 });
                 table.appendChild(tr);                   
             }
-
-            const body=[`${t.id}`,`${t.solucion}`,`${t.estado_solucion}`,`${t.ultimo_contacto}`];
+            const tid=`${t.id}`;
+            const aref=updateTicketURL+'?id='+tid;
+            const body=["#ref",`${t.solucion}`,`${t.estado_solucion}`,`${t.ultimo_contacto}`];
             let trl=document.createElement("tr");
             body.forEach((line) => {
                 let td=document.createElement("td");
                 td.style.border="1px solid";
-                td.innerText = line;
+                if (line=="#ref") {
+                    let ax=document.createElement("a");
+                    ax.href=aref;
+                    ax.innerText = tid;
+                    td.appendChild(ax);
+                } else {
+                    td.innerText = line;
+                }
                 trl.appendChild(td);
             });
             table.appendChild(trl);                   

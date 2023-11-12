@@ -582,7 +582,7 @@ app.post('/api/updateTicket', (req,res) => {
     const {clienteID} = req.body;
     const {estado_solucion} = req.body;
     const {solucion} = req.body;
-    const {descripcion} = req.descripcion;
+    const {descripcion} = req.body;
     const {fecha_apertura} = req.body;
 
     if (!id) {

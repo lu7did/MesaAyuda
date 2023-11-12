@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--------------------------------------------------------------------------------------------------------------------------->
-<!-- addTicket.html                                                                                                     -->                                                                                                      
+<!-- updateTicket.html                                                                                                     -->                                                                                                      
 <!-- Taller de maquetado - aplicación ejemplo Mesa de Ayuda                                                                -->                                                                                                      
 <!-- Dr. Pedro E. Colla                                                                                                    -->                                                                                                      
 <!-- UADER - Ingeniería de Software I                                                                                      -->                                                                                                      
@@ -67,39 +67,49 @@
 </style>
     </head>
 <!--------------------------------------------------------------------------------------------------------------------------->
-<script src="addTicket.js" type="module"></script>   -->
+<script src="updateTicket.js" type="module"></script>
 
 <body>
     <center><img src="loginClient.png" alt="Nuestra imagen corporativa" style="width:200px;height:150px;"></center>
     <center> <ul class="breadcrumb">
         <li><a href="http://127.0.0.1:5500/loginClient.html">Login</a></li>
         <li><a href="http://127.0.0.1:5500/listarTicket.html">Listar ticket</a></li>
-        <li>Nuevo ticket</li>
+        <li>Actualizar ticket</li>
       </ul>
     </center>
     <center><h1>Sistema de Mesa de Ayuda</h1></center>
     <center><p id="lastlogin"></p></center>
     <center>
 
-        <form class="form" id="addTicket" method="GET">
+        <form class="form" id="updateTicket" method="GET">
        
             <!-- <input id="solucion" type="text" size="100" border="1" style="height:200px;font-size:14pt;"> -->
         <table>
             <tr>
-                <td><label>Tema del ticket</label></td>               
+                <td><p id="id" style="background-color: #000000;color: #FFFFFF ;width:600px;font-size:12pt"></p></td>            
+            </tr>
+
+            <tr  color="#DAF7A6">
+                <td style="background-color: #DAF7A6;width:600px;font-size:12pt" ><label>Tema del ticket</label></td>               
             </tr>
             <tr>
-                <td><input name="ticket" style="width:600px;font-size:14pt;"></td>               
+                <td><p id="solucion" style="width:600px;font-size:12pt;"></p></td>               
             </tr>
             <tr>
-                <td><label>Detalle del ticket</label></td>               
+                <td style="background-color: #DAF7A6;width:600px;font-size:12pt" ><label>Detalle del ticket</label></td>               
             </tr>
             <tr>    
-                <td><textarea name="descripcion" style="width:600px;height:200px;font-size:14pt;"></textarea></td>
+                <td><p style="background-color: #FBFBE1;width:600px;font-size:12pt;" id="descripcion"></p></td>               
+            </tr>
+            <tr>    
+                <td><textarea style="background-color: #E7FCFC; width:600px;height:50px;font-size:12pt;" name="descripcion"></textarea></td>
+            </tr>
+            <tr>
+                <td><p id="status"></p></td> 
             </tr>
             <tr>
                 <td>
-                    <button name="crear"  value="crear"  type="submit">Crear</button>
+                    <button name="actualizar"  value="actualizar"  type="submit">Actualizar</button>
                     <button type="cancel" onclick="onclick=window.history.back();return false;">Cancel</button>
                 </td>   
             </tr>
@@ -111,7 +121,4 @@
 <p><br/><center></center><span id="resultado"></span></p></center></p>
 <center><p id="mensajes"></p></center>
 <center><div id="app"></div></center>
-
-
-
 </body>
