@@ -85,8 +85,6 @@ fetch(`${api_TicketURL}`,options)
     return res.json();
 }).then(t=>{
 
-    console.log("recibido "+JSON.stringify(t));
-
     document.getElementById("solucion").innerHTML=t.data.Item.solucion;
     document.getElementById("descripcion").innerHTML=t.data.Item.descripcion.replace('\n','<br/>');
 
@@ -146,8 +144,6 @@ const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
     };
     
 
-    console.log(ticket);
-
     const optionsUpdate = {
         method: 'POST',
         headers: {
@@ -163,7 +159,6 @@ const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
     .then(res => {
         return res.json();
     }).then(ticket=>{
-        console.log("Actualizo exitosamente ticket");
         window.location.href = listarTicketURL;
     });    
     
