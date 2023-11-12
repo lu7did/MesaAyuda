@@ -90,7 +90,15 @@ fetch(`${api_TicketURL}`,options)
     document.getElementById("solucion").innerHTML=t.data.Item.solucion;
     document.getElementById("descripcion").innerHTML=t.data.Item.descripcion.replace('\n','<br/>');
 
-    document.getElementById("status").innerHTML="Estado de Solucion {"+t.data.Item.estado_solucion+"} Fecha apertura: "+t.data.Item.fecha_apertura+" Fecha ultimo contacto: "+t.data.Item.ultimo_contacto;
+    var s=0;
+    switch(t.data.Item.estado_solucion) {
+        case 0 : s='inicial'; break;
+        case 1 : s='primer nivel'; break;
+        case 2 : s='2do nivel'; break;
+        case 3 : s='resuelto'; break;
+    }
+
+    document.getElementById("status").innerHTML="Estado de Solucion {"+s+"}</br> Fecha apertura: "+t.data.Item.fecha_apertura+" Fecha ultimo contacto: "+t.data.Item.ultimo_contacto;
     estado_solucion=t.data.Item.estado_solucion;
     fecha_apertura=t.data.Item.fecha_apertura;
     ultimo_contacto=t.data.Item.ultimo_contacto;
