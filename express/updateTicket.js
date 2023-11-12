@@ -91,9 +91,10 @@ fetch(`${api_TicketURL}`,options)
     var s=0;
     switch(t.data.Item.estado_solucion) {
         case 0 : s='inicial'; break;
-        case 1 : s='primer nivel'; break;
+        case 1 : s='1er nivel'; break;
         case 2 : s='2do nivel'; break;
-        case 3 : s='resuelto'; break;
+        case 3 : s='cerrado'; break;
+
     }
 
     document.getElementById("status").innerHTML="Estado de Solucion {"+s+"}</br> Fecha apertura: "+t.data.Item.fecha_apertura+" Fecha ultimo contacto: "+t.data.Item.ultimo_contacto;
