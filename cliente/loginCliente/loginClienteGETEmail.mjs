@@ -1,4 +1,4 @@
-        //* loginClienteGETEmail
+//* loginClienteGETEmail
         //* API para acceder a un cliente y chequear su clave
         //* Este REST API utiliza el método HTTP GET en lugar de POST
         //* Dr. Pedro E. Colla
@@ -15,14 +15,14 @@
 
 //*---- Extrae los argumentos id y password
 
-                const contacto=event['queryStringParameters']['contacto'];
+            const contacto=event['queryStringParameters']['contacto'];
 	        const password=event['queryStringParameters']['password'];
 	        
 	        
 //*---- Arma clave de búsqueda
 
-          const scanKey=contacto;
-                      const input = { // ScanInput
+            const scanKey=contacto;
+            const input = { // ScanInput
                             TableName: "cliente", // required
                             Select: "ALL_ATTRIBUTES" || "ALL_PROJECTED_ATTRIBUTES" || "SPECIFIC_ATTRIBUTES" || "COUNT",
                             ScanFilter: {
@@ -137,7 +137,7 @@
 
             return {
                   statusCode: 200,
-     	          body: JSON.stringify({"Nombre": uresp.nombre,"fecha_ultimo_ingreso":uresp.fecha_ultimo_ingreso,"response" : "OK"}),
+     	          body: JSON.stringify({"id":uresp.id, "contacto" : uresp.contacto, "nombre": uresp.nombre,"fecha_ultimo_ingreso":uresp.fecha_ultimo_ingreso,"response" : "OK"}),
      	      };
 
 
@@ -152,5 +152,3 @@
             }
 
 };
-
-
