@@ -10,7 +10,6 @@
         const formData = new FormData(formE1);
         const data = Object.fromEntries(formData);
         console.log('Revisa el valor del form');
-
         console.log(data);
 
         /*---
@@ -46,14 +45,14 @@
         /*---
         Forma URL para acceder, typicode es un fake API REST para pruebas
         */
-        const testLoginURL='https://my-json-server.typicode.com/lu7did/testJASON/posts/';
-        const api_LoginURL=testLoginURL+data.id;
+        //const testLoginURL='https://my-json-server.typicode.com/lu7did/testJASON/posts/';
+        //const api_LoginURL=testLoginURL+data.id;
 
         /*---
           Dirección de REST API en AWS
         */
-        //const RESTapi_LoginURL="https://ss6iifck5m.execute-api.us-east-1.amazonaws.com/loginClienteGET";
-        //const api_LoginURL=RESTapi_LoginURL+"?id="+data.id+"&password="+data.password;
+        const RESTapi_LoginURL="https://cgndi1qdug.execute-api.us-east-1.amazonaws.com/loginClienteEMail";
+        const api_LoginURL=RESTapi_LoginURL+"?contacto="+data.id+"&password="+data.password;
 
         /*---
         Genera objeto HTML a ser actualizado en el tag identificado como "app"
@@ -79,14 +78,15 @@
         .then(res => {
             return res.json();
         }).then(users=>{
-            console.log(users);
-//          if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
-            if (users.password == data.password) {
+            console.log("recovered from DB="+JSON.stringify(users));
+            if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
+//            if (users.password == data.password) {
                 console.log('La password es correcta');
                 console.log("nombre("+users.nombre+") fecha_ultimo_ingreso("+users.fecha_ultimo_ingreso+")");
                 document.getElementById('resultado').style.color="BLACK";
                 document.getElementById('resultado').textContent='Bienvenido al sistema '+users.nombre+', ultimo ingreso '+users.fecha_ultimo_ingreso;
-                window.location.href = listarTicketURL+"?id="+users.id+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso;
+                console.log("id="+users.id+" nombre="+users.nombre+" ultimo="+users.fecha_ultimo_ingreso);
+                window.location.href = listarTicketURL+"?id="+users.id+"&contacto="+users.contacto+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso;
             }  else {
                 console.log('La password no es correcta');
                 document.getElementById('resultado').style.color="RED";
