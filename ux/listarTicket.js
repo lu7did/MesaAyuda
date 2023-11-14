@@ -24,9 +24,9 @@ var query = getQueryParams(document.location.search);
 console.log("id:"+query.id);
 console.log("contacto:"+query.contacto);
 console.log("nombre:"+query.nombre);
-console.log("ultma_fecha:"+query.ultimo);
+console.log("ultima_fecha:"+query.fecha_ultimo_ingreso);
 
-document.getElementById("lastlogin").innerHTML = "<table><tr><td>Cliente</td><td>"+query.id+"</td></tr><tr><td>Contacto</td><td>"+query.contacto+"</td></tr></tr><tr><td>Nombre</td><td>"+query.nombre+"</td></tr><tr><td>Ultimo ingreso</td><td>"+query.ultimo+"</td></tr></table>";
+document.getElementById("lastlogin").innerHTML = "<table><tr><td>Cliente</td><td>"+query.id+"</td></tr><tr><td>Contacto</td><td>"+query.contacto+"</td></tr></tr><tr><td>Nombre</td><td>"+query.nombre+"</td></tr><tr><td>Ultimo ingreso</td><td>"+query.fecha_ultimo_ingreso+"</td></tr></table>";
 
 
 /*---
@@ -39,7 +39,7 @@ Tener en cuenta que typicode es un fake REST API
 //http://127.0.0.1:5500/listarTicket.html?id=0533a95d-7eef-4c6b-b753-1a41c9d1fbd0&nombre=Pedro%20E.%20Colla&ultimo=01/11/2023
 //
 
-const APIREST_URL='https://t6bjeszij4.execute-api.us-east-1.amazonaws.com/listarTicket?clienteID='+query.id;
+const APIREST_URL='https://xe3qolsgh0.execute-api.us-east-1.amazonaws.com/listarTicketGET?clienteID='+query.id;
 //clientID 0533a95d-7eef-4c6b-b753-1a41c9d1fbd0
 
 const api_TicketURL=APIREST_URL;
@@ -95,59 +95,3 @@ fetch(`${api_TicketURL}`)
         document.getElementById("mensajes").innerHTML = "No hay tickets pendientes";
     }
 });
-
-//          if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
-
-
-
-/*---
-Accede al REST API de tickets para obtener información
-*/
-
-/*
-fetch(`${api_TicketURL}`)
-.then((response)=>response.json())
-.then((ticket)=>{
-    let f=false;
-    let table=document.createElement("table");
-    ticket.forEach((t)=> {
-        if (t.clienteID == query.id) {
-            if (f==false) {
-
-                f=true;
-                const hdr=["Cliente","ID","Motivo","Estado","Fecha"];
-                let tr=document.createElement("tr");
-                hdr.forEach((item) => {
-                    let th=document.createElement("th");
-                    th.innerText = item;
-                    tr.appendChild(th);
-                });
-                table.appendChild(tr);                   
-            }
-
-            const body=[t.clienteID,`${t.id}`,`${t.solucion}`,`${t.estado_solucion}`,`${t.ultimo_contacto}`];
-            let trl=document.createElement("tr");
-            body.forEach((line) => {
-                let td=document.createElement("td");
-                td.innerText = line;
-                trl.appendChild(td);
-            });
-            table.appendChild(trl);                   
-
-        }
-    });
-
-    if (f) {
-        HTMLResponse.appendChild(table);
-    } else {
-
-        console.log("no tiene tickets");
-        document.getElementById('mensajes').style.textAlign = "center";
-        document.getElementById('mensajes').style.color="RED";
-        document.getElementById("mensajes").innerHTML = "No hay tickets pendientes";
-    }
-});
-*/    
-
-
-

@@ -1,11 +1,12 @@
-//* loginClienteGETEmail
+        //*------------------------------------------------------------------------------*
+        //* loginClienteGETEmail
         //* API para acceder a un cliente y chequear su clave
         //* Este REST API utiliza el método HTTP GET en lugar de POST
         //* Dr. Pedro E. Colla
         //* UADER - Ingeniería de Software I
         //* (c) 2023 Dr. Pedro E. Colla
         //*-----------------------------------------------------------------------------*
-            import { DynamoDBClient, GetItemCommand, UpdateItemCommand, ScanCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
+      import { DynamoDBClient, GetItemCommand, UpdateItemCommand, ScanCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 	    import { randomUUID } from "crypto";
 	    import {marshall,unmarshall}  from "@aws-sdk/util-dynamodb";
 
@@ -15,14 +16,20 @@
 
 //*---- Extrae los argumentos id y password
 
-            const contacto=event['queryStringParameters']['contacto'];
+	        const contacto=event['queryStringParameters']['contacto'];
 	        const password=event['queryStringParameters']['password'];
 	        
 	        
 //*---- Arma clave de búsqueda
 
-            const scanKey=contacto;
-            const input = { // ScanInput
+
+         /*---- Recuperar el cliente desde la base ----*/
+
+
+//*---- Arma clave de búsqueda
+
+          const scanKey=contacto;
+                      const input = { // ScanInput
                             TableName: "cliente", // required
                             Select: "ALL_ATTRIBUTES" || "ALL_PROJECTED_ATTRIBUTES" || "SPECIFIC_ATTRIBUTES" || "COUNT",
                             ScanFilter: {
@@ -46,47 +53,39 @@
                                          
             const uresponse=response.Items.map(i=>unmarshall(i));
 
-//*---- Si no encuentra al menos uno significa que ya el correo está utilizado y retorna con mensaje
+//*---- Si encuentra algo significa que ya el correo está utilizado y retorna con mensaje
                                                      
             if (response.Count == 0) {
                return {
-                    statusCode: 401,
-                    body: JSON.stringify({"data" : uresponse , "response" : "usuario no existe"}),
+                    statusCode: 400,
+                    body: JSON.stringify({"data" : uresponse , "response" : "not in data base"}),
                 };
 
             }
-
-//*----- el objeto uresponse resultante de un scan es un ARRAY de objetos, no un único objeto como el caso de getItem
-//*----- por lo tanto hay que referenciar el primer objeto. Lo correcto es uresponse[0].password y no uresponse.password
             
           if (uresponse[0].password != password) {
              return {
                   statusCode: 400,
      	            body: JSON.stringify({ "response":"usuario no existe" }),
              };
-          }
+	       }
 	        
 
-//*---- Valida que el usuario esté activo
-
-          if (uresponse[0].activo != true) {
-	     return {
+	        if (uresponse[0].activo != true) {
+	           return {
                   statusCode: 401,
-     	          body: JSON.stringify({ "response" : "El usuario no está activo" }),
+     	            body: JSON.stringify({ "response" : "El usuario no está activo" }),
              };
-	  } 
-
-//*--- Valida que no sea el primer ingreso
-
-          if (uresponse[0].primer_ingreso == true) {
-             return {
-                statusCode: 403,
-	        body: JSON.stringify({ "response" : "Requiere cambio de password" }),
+	        } 
+            if (uresponse[0].primer_ingreso == true) {
+	           return {
+                  statusCode: 402,
+     	            body: JSON.stringify({ "response" : "Requiere cambio de password" }),
              };
                 
-          } 
+            } 
 
-//*---> Sacar comentarios a las siguientes lineas para retornar solo la respuesta OK sin actualizar los datos de último ingreso
+//*---> Descomentar las siguientes lineas para retornar solo la respuesta OK sin actualizar los datos de último ingreso
 //           return {
 //                  statusCode: 200,
 //     	            body: JSON.stringify({ "response" : "OK" }),
@@ -102,7 +101,7 @@
         var yyyy = hoy.getFullYear();
         hoy = dd + '/' + mm + '/' + yyyy;
 
-//*---- Arma clave de búsqueda para localizar el registro y asegurarlo para actualización
+//*---- Arma clave de búsqueda
 
         const u = { 
             ExpressionAttributeNames: { 
@@ -133,11 +132,9 @@
 
             const uresp=unmarshall(resp.Attributes);
 
-//*---- es un login correcto así que retorna también el nombre y la fecha de último ingreso
-
             return {
                   statusCode: 200,
-     	          body: JSON.stringify({"id":uresp.id, "contacto" : uresp.contacto, "nombre": uresp.nombre,"fecha_ultimo_ingreso":uresp.fecha_ultimo_ingreso,"response" : "OK"}),
+     	          body: JSON.stringify({"id":uresp.id,"contacto": uresp.contacto,"nombre": uresp.nombre,"fecha_ultimo_ingreso":uresp.fecha_ultimo_ingreso,"response" : "OK"}),
      	      };
 
 
@@ -152,3 +149,5 @@
             }
 
 };
+
+

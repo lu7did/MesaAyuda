@@ -51,7 +51,8 @@
         /*---
           Dirección de REST API en AWS
         */
-        const RESTapi_LoginURL="https://cgndi1qdug.execute-api.us-east-1.amazonaws.com/loginClienteEMail";
+        //const RESTapi_LoginURL="https://cgndi1qdug.execute-api.us-east-1.amazonaws.com/loginClienteEMail";
+        const RESTapi_LoginURL="https://ff1qcv90g2.execute-api.us-east-1.amazonaws.com//loginClienteGETEMail";
         const api_LoginURL=RESTapi_LoginURL+"?contacto="+data.id+"&password="+data.password;
 
         /*---
@@ -78,7 +79,7 @@
         .then(res => {
             return res.json();
         }).then(users=>{
-            console.log("recovered from DB="+JSON.stringify(users));
+            console.log("Datos enviados por AWS Lambda loginClienteEMail="+JSON.stringify(users));
             if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
 //            if (users.password == data.password) {
                 console.log('La password es correcta');
@@ -86,7 +87,7 @@
                 document.getElementById('resultado').style.color="BLACK";
                 document.getElementById('resultado').textContent='Bienvenido al sistema '+users.nombre+', ultimo ingreso '+users.fecha_ultimo_ingreso;
                 console.log("id="+users.id+" nombre="+users.nombre+" ultimo="+users.fecha_ultimo_ingreso);
-                window.location.href = listarTicketURL+"?id="+users.id+"&contacto="+users.contacto+"&nombre="+users.nombre+"&ultimo="+users.fecha_ultimo_ingreso;
+                window.location.href = listarTicketURL+"?id="+users.id+"&contacto="+users.contacto+"&nombre="+users.nombre+"&fecha_ultimo_ingreso="+users.fecha_ultimo_ingreso;
             }  else {
                 console.log('La password no es correcta');
                 document.getElementById('resultado').style.color="RED";
