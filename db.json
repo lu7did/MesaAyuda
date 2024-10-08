@@ -1,6 +1,7 @@
 {
   "posts":[
    {
+      "response":"OK",
       "nombre":"Dr. Pedro E. Colla",
       "contacto":"colla.pedro@uader.edu.ar",
       "password":"secret",
@@ -13,6 +14,7 @@
       "id":"803a62c8-78c8-4b63-9106-73af216d504b"
    },
    {
+      "response":"OK",
       "nombre":"Dr. Pedro E. Colla",
       "contacto":"pcolla@iua.edu.ar",
       "password":"secret",
@@ -25,6 +27,7 @@
       "id":"666-62c8-78c8-4b63-9106-73af216d504b"
    },
    {
+      "response":"OK",
       "nombre":"Dr. Pedro E. Colla",
       "contacto":"pedro_colla@hotmail.com",
       "password":"secret",
@@ -37,6 +40,7 @@
       "id":"803a62c8-78c8-4b63-9106-73af216d2084"
    },
    {
+      "response":"OK",
       "nombre":"Dr. Pedro E. Colla",
       "contacto":"pedro.colla@gmail.com",
       "password":"secret",
