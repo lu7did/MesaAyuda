@@ -40,31 +40,14 @@
             return;
         }
 
-        const listarTicketURL="http://127.0.0.1:5500/listarTicket.html";
-
-        /*---
-        Forma URL para acceder, typicode es un fake API REST para pruebas
-        */
-        //const testLoginURL='https://my-json-server.typicode.com/lu7did/testJASON/posts/';
-        //const api_LoginURL=testLoginURL+data.id;
-
-
-
         /*---
         Genera objeto HTML a ser actualizado en el tag identificado como "app"
-        */
-
-        /*
-        id de cliente para test 
-        803a62c8-78c8-4b63-9106-73af216d504b
         */
         
         const HTMLResponse=document.querySelector("#app");
         const ul=document.createElement("ul");
 
         const tpl=document.createDocumentFragment();
-        
-       
         
         const systemURL={ 
 
@@ -111,16 +94,35 @@
         console.log("options "+JSON.stringify(options));
 
         /*-----
+        Define el URI para realizar el acceso
+        */
+       
+        var API=RESTAPI.loginCliente;
+        var APIoptions=options;
+
+
+        /*---- Typicode utilizar id 803a62c8-78c8-4b63-9106-73af216d504b -------*/
+/*
+        const tipycode=true;
+        if (tipycode==true) {
+            console.log("Acceso usando Typicode como application server");
+            API="https://my-json-server.typicode.com/lu7did/MesaAyuda/posts/"+data.id;
+            APIoptions = {method: 'GET'};
+        }
+*/       
+        
+
+        /*-----
         Realiza el acceso al API Rest utilizando gestión de sincronización mediante promesas
         */
-        
-        fetch(`${RESTAPI.loginCliente}`,options)
+
+        fetch(`${API}`,APIoptions)
         .then(res => {
             return res.json();
         }).then(users=>{
             console.log("Datos enviados por NodeJS local server="+JSON.stringify(users));
+            console.log("users.response="+users.password);
             if (users.response == 'OK') {         //<==Habilitar esto para dejar que el API REST verifique sin exponer la password
-//            if (users.password == data.password) {
                 console.log('La password es correcta');
                 console.log("nombre("+users.nombre+") fecha_ultimo_ingreso("+users.fecha_ultimo_ingreso+")");
                 document.getElementById('resultado').style.color="BLACK";
