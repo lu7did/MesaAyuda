@@ -58,12 +58,14 @@
         id de cliente para test 
         803a62c8-78c8-4b63-9106-73af216d504b
         */
-
+        
         const HTMLResponse=document.querySelector("#app");
         const ul=document.createElement("ul");
 
         const tpl=document.createDocumentFragment();
-
+        
+       
+        
         const systemURL={ 
 
             listarTicket    : "http://127.0.0.1:5500/listarTicket.html",
@@ -85,6 +87,7 @@
             getCliente      : "http://localhost:8080/api/getCliente",
             updateCliente   : "http://localhost:8080/api/updateCliente"
         };
+        
 
         /*-----
         Crea estructuras para acceder a data del cliente
