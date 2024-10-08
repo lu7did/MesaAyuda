@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!-- loginClient.html                                                                                                      -->                                                                                                      
+<!-- Taller de maquetado - aplicación ejemplo Mesa de Ayuda                                                                -->                                                                                                      
+<!-- Dr. Pedro E. Colla                                                                                                    -->                                                                                                      
+<!-- UADER - Ingeniería de Software I                                                                                      -->                                                                                                      
+<!--------------------------------------------------------------------------------------------------------------------------->
+
+<html Lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>POST Form Data as JSON with JavaScript Fetch API</title>
+
+        <style type="text/css"> 
+  
+            label { 
+              font: 18px; 
+            } 
+            form {
+                width: 500px;
+                border: 1px solid black; 
+            }
+            input { 
+              margin: 7px; 
+              padding: 2px 
+            } 
+            .form-label{
+                margin-bottom:0!important;
+            }     
+            .txt {
+                display: inline-block;
+                  width: 80%;
+                  outline: none;
+                margin:0;
+            }
+        </style> 
+    </head>
+<body>
+    <!-- Area de encabezados fijos -->
+    <!-- close the browser and start it with the --disable-web-security and --user-data-dir flags-->
+    <center><img src="loginClient.png" alt="Nuestra imagen corporativa" style="width:200px;height:150px;"></center>
+    <center><h1>Sistema de Mesa de Ayuda</h1></center>
+
+    <!-- Formulario para enviar los datos -->    
+    <center>
+    <form class="form" method="GET" style="background-color:#d8f7cf" width="100px" border="1">
+        <br>
+        <center><h4>Ingrese su identificación de usuario y password</h4></center>
+        <table>
+            <tr style="height:10px;">
+                <td><label for="cliForm" class="form-label">Cliente</label></td>               
+            </tr>
+            <tr style="height:10px;">    
+                <td><input class="txt" name="id" type="text" placeholder="id"><br></td>
+            </tr>
+            <tr style="height:10px;">
+                <td><label for="passForm" class="form-label">Password</label></td>               
+            </tr>
+            <tr>    
+                <td><input class="txt" name="password" type="password" placeholder="password"><br></td>
+            </tr>
+            <tr>
+                <center><td><a href="http://127.0.0.1:5500/loginClient.html">Nuevo cliente</a></td></center>
+                <center><td><a href="http://127.0.0.1:5500/loginClient.html">¿Olvido su password?</a></td></center>
+
+            </tr>
+
+        </table>
+        
+        
+        <p>¡Todo lo que Ud. diga o haga en éste sistema podrá ser usado en su contra!</p>
+        <input name="termscondition" type="checkbox"> Acepto los términos y condiciones del ingreso al sistema (S.E.u.O)</p></br>
+        <button type="submit">Ingresar</button>
+    <p> </p>
+    </form>
+    </center>
+
+    <!-- Area para crear contenido dinámico -->
+    <p><br/><center></center><span id="resultado"></span></p></center></p>
+    <div id="app"></div>
+    <ul id="listado"></ul>
+    
+    <!-- Script a ser ejecutado --> 
+    <script src="loginClient.js" type="module"></script>
+    
+
+</body>

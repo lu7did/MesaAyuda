@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!-- listarTicket.html                                                                                                     -->                                                                                                      
+<!-- Taller de maquetado - aplicación ejemplo Mesa de Ayuda                                                                -->                                                                                                      
+<!-- Dr. Pedro E. Colla                                                                                                    -->                                                                                                      
+<!-- UADER - Ingeniería de Software I                                                                                      -->                                                                                                      
+<!--------------------------------------------------------------------------------------------------------------------------->
+
+<html Lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>POST Form Data as JSON with JavaScript Fetch API</title>
+        <style type="text/css"> 
+
+            ul.breadcrumb {
+                padding: 10px 16px;
+                list-style: none;
+                background-color: #eee;
+            }
+
+/* Display list items side by side */
+            ul.breadcrumb li {
+                display: inline;
+                font-size: 18px;
+            }
+
+/* Add a slash symbol (/) before/behind each list item */
+            ul.breadcrumb li+li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+
+/* Add a color to all links inside the list */
+            ul.breadcrumb li a {
+                color: #0275d8;
+                text-decoration: none;
+            }
+
+/* Add a color on mouse-over */
+            ul.breadcrumb li a:hover {
+                color: #01447e;
+                text-decoration: underline;
+            }
+            </style>
+    </head>
+    <body>
+        <center><img src="loginClient.png" alt="Nuestra imagen corporativa" style="width:200px;height:150px;"></center>
+        <center> <ul class="breadcrumb">
+            <li><a href="http://127.0.0.1:5500/loginClient.html">Login</a></li>
+            <li>Listar tickets</li>
+          </ul>
+        </center>
+        <center><h1>Sistema de Mesa de Ayuda</h1></center>
+        <center><h2>Tickets activos para usuario</h1></center>
+        <center><p id="lastlogin"></p></center>
+        <center><p id="mensajes"></p></center>
+        <center><div id="app"></div></center>
+    
+        
+        <script src="listarTicket.js" type="module"></script>
+    
+    </body>
