@@ -40,7 +40,7 @@
       "id":"803a62c8-78c8-4b63-9106-73af216d2084"
    },
    {
-      "response":"OK",
+      "response":"ERROR",
       "nombre":"Dr. Pedro E. Colla",
       "contacto":"pedro.colla@gmail.com",
       "password":"secret",
