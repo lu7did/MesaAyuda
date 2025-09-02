@@ -8,15 +8,28 @@
 
   Dr. Pedro E. Colla 2023
  *----------------------------------------------------------------------------------------------------------------*/
+import express from 'express';
+
 console.log("Comenzando servidor");
 const crypto = require('crypto');
-const express = require('express');
+console.log("crypto Ok!");
+
+//const express = require('express');
+//console.log("express Ok!");
+
 const app = express();
+console.log("express ready!");
+
 const PORT = 8080;
 const cors = require('cors');
+console.log("cors ok!");
+
 app.use(cors());
+console.log("cors ready!");
 
 var AWS = require("aws-sdk");
+console.log("aws-sdk ready!");
+
 /*----
 Acquire critical security resources from an external file out of the path
 */
@@ -30,7 +43,7 @@ let awsConfig = {
 };
 
 AWS.config.update(awsConfig);
-
+console.log("Servidor listo!");
 let docClient = new AWS.DynamoDB.DocumentClient();
 
 app.listen(
@@ -42,7 +55,7 @@ app.use(express.json());
 
 app.get('/api/cliente', (req,res) => {
     res.status(200).send({response : "OK", message : "API Ready"});
-
+    console.log("API cliente: OK");
 });
 
 /*-----------
