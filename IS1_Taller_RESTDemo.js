@@ -14,17 +14,11 @@
 // server.js
 const express = require('express');
 const axios = require('axios');
-
 const app = express();
 const PORT = 8080;
-
-// Middleware para poder leer JSON en POST
 app.use(express.json());
-
-// URL externa fija
 const URL_EXTERNA = 'https://my-json-server.typicode.com/lu7did/mesaayuda/posts/';
 
-// --- GET /cliente?id=XXXX ---
 app.get('/cliente', async (req, res) => {
   const { id } = req.query;
 
@@ -33,8 +27,9 @@ app.get('/cliente', async (req, res) => {
   }
 
   try {
+    console.log('Recuperando GET('+URL_EXTERNA+id);
     const response = await axios.get(URL_EXTERNA+id);
-    res.send(`(GET) Cliente con id=${id}: ${JSON.stringify(response.data)}`);
+    res.send(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener datos del sitio externo');
@@ -51,7 +46,7 @@ app.post('/cliente', async (req, res) => {
 
   try {
     const response = await axios.get(URL_EXTERNA+id);
-    res.send(`(POST) Cliente con id=${id}: ${JSON.stringify(response.data)}`);
+    res.send(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener datos del sitio externo');

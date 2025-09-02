@@ -1,0 +1,56 @@
+{
+  "posts":[
+   {
+      "response":"OK",
+      "nombre":"Dr. Pedro E. Colla",
+      "contacto":"colla.pedro@uader.edu.ar",
+      "password":"secret",
+      "fecha_ultimo_ingreso":"11/08/2024",
+      "activo":true,
+      "fecha_cambio_password":"01-01-2023",
+      "registrado":true,
+      "primer_ingreso":false,
+      "fecha_alta":"01-01-2023",
+      "id":"803a62c8-78c8-4b63-9106-73af216d504b"
+   },
+   {
+      "response":"OK",
+      "nombre":"Dr. Pedro E. Colla",
+      "contacto":"pcolla@iua.edu.ar",
+      "password":"secret",
+      "fecha_ultimo_ingreso":"13-11-2023",
+      "fecha_cambio_password":"01-01-2023",
+      "activo":true,
+      "registrado":true,
+      "primer_ingreso":false,
+      "fecha_alta":"01-01-2023",
+      "id":"666-62c8-78c8-4b63-9106-73af216d504b"
+   },
+   {
+      "response":"OK",
+      "nombre":"Dr. Pedro E. Colla",
+      "contacto":"pedro_colla@hotmail.com",
+      "password":"secret",
+      "fecha_ultimo_ingreso":"16/11/2023",
+      "activo":true,
+      "fecha_cambio_password":"01-01-2023",
+      "registrado":true,
+      "primer_ingreso":false,
+      "fecha_alta":"01-01-2023",
+      "id":"803a62c8-78c8-4b63-9106-73af216d2084"
+   },
+   {
+      "response":"ERROR",
+      "nombre":"Dr. Pedro E. Colla",
+      "contacto":"pedro.colla@gmail.com",
+      "password":"secret",
+      "fecha_ultimo_ingreso":"13-11-2023",
+      "fecha_cambio_password":"01-01-2023",
+      "activo":true,
+      "registrado":true,
+      "primer_ingreso":false,
+      "fecha_alta":"01-01-2023",
+      "id":"803a62c8-78c8-4b63-9106-73af216d504c"
+   }
+]
+}
