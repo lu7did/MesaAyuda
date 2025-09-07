@@ -101,16 +101,25 @@
         var APIoptions=options;
 
 
+        /*----------------------------------------------------------------------*/
         /*---- Typicode utilizar id 803a62c8-78c8-4b63-9106-73af216d504b -------*/
-/*
-        const tipycode=true;
+        /*                                                                      */
+        /* El siguiente código es utilizado para resolver la validación de      */
+        /* cliente utilizando un "fake" API REST server en Typicode             */
+        /* para realizar la validación con el REST API server correcto          */
+        /* deberá cambiar la instrucción para que                               */
+        /*              const tipycode=false;                                   */
+        /*----------------------------------------------------------------------*/
+
+        const tipycode=true;                       /*-- Instrucción a cambiar --*/                                          
+
         if (tipycode==true) {
             console.log("Acceso usando Typicode como application server");
             API="https://my-json-server.typicode.com/lu7did/MesaAyuda/posts/"+data.id;
             APIoptions = {method: 'GET'};
         }
       
-*/        
+        
 
         /*-----
         Realiza el acceso al API Rest utilizando gestión de sincronización mediante promesas
