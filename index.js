@@ -6,12 +6,15 @@
   UADER - IS1
   Caso de estudio MesaAyuda
 
-  Dr. Pedro E. Colla 2023
+  Dr. Pedro E. Colla 2023,2025
  *----------------------------------------------------------------------------------------------------------------*/
-import express from 'express';
+//AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE=1
 
+import express from 'express';
+import crypto from 'crypto';
 console.log("Comenzando servidor");
-const crypto = require('crypto');
+
+// const crypto = require('crypto');
 console.log("crypto Ok!");
 
 //const express = require('express');
@@ -21,20 +24,27 @@ const app = express();
 console.log("express ready!");
 
 const PORT = 8080;
-const cors = require('cors');
+
+import cors from 'cors';
+
+//const cors = require('cors');
 console.log("cors ok!");
 
 app.use(cors());
 console.log("cors ready!");
 
-var AWS = require("aws-sdk");
+import AWS from 'aws-sdk'
+//var AWS = require('aws-sdk');
 console.log("aws-sdk ready!");
 
 /*----
 Acquire critical security resources from an external file out of the path
 */
-const accessKeyId = require('../accessKeyId.js');
-const secretAccessKey = require('../secretAccessKey.js');
+//const accessKeyId = require('../accessKeyId.js');
+//const secretAccessKey = require('../secretAccessKey.js');
+import accessKeyId from '../accessKeyId.js';
+import secretAccessKey  from '../secretAccessKey.js';
+
 let awsConfig = {
     "region"         : "us-east-1",
     "endpoint"       : "http://dynamodb.us-east-1.amazonaws.com",
